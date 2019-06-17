@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 well">
+      <div class="row">
+        <div class="col-sm-12 bg-secondary text-dark text-center">
+          <h1>{{title}}</h1>
+        </div>
+        <div class="col-sm-12 bg-white">
+          <hr/>
+        </div>
+        <div class="col-sm-12 bg-light text-dark text-center">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+
+<ng2-toasty [position]="'bottom-right'"></ng2-toasty>
+<app-loader></app-loader>

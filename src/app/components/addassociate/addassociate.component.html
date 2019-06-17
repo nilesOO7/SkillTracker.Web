@@ -1,0 +1,331 @@
+<div class="row">
+
+  <div class="col-sm-12 text-left m-b-md">
+    <div class="form-inline">
+      <button type="button" id="btnCancel" class="btn btn-default btn-sm" title="Back to Dashboard" (click)="cancelClick()">
+        <span class="glyphicon glyphicon-menu-left"></span>
+        <span class="glyphicon glyphicon-home"></span>
+      </button>
+      <div class="form-group m-l-sm">
+        <h4>Skills Tracker: Add New Employee Skills</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <!-- Primary Input Fields -->
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="form-horizontal ctrlLblLeft">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-sm" [(ngModel)]="associateToAdd.name" [attr.disabled]="isViewMode? '': null"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-5" for="associateId">Associate ID:</label>
+            <div class="col-sm-7">
+              <input type="number" class="form-control input-sm" [(ngModel)]="associateToAdd.idTxt" [attr.disabled]="isViewMode||isEditMode? '': null"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control input-sm" [(ngModel)]="associateToAdd.email" [attr.disabled]="isViewMode? '': null"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="mobile">Mobile:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-sm" [(ngModel)]="associateToAdd.mobile" [attr.disabled]="isViewMode? '': null"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-inline text-left">
+          <div class="form-group">
+            <label>Gender: </label>
+            <label class="radio-inline">
+              <input type="radio" name="gender" value="F" [(ngModel)]="associateToAdd.gender" [attr.disabled]="isViewMode? '': null">Female</label>
+            <label class="radio-inline">
+              <input type="radio" name="gender" value="M" [(ngModel)]="associateToAdd.gender" [attr.disabled]="isViewMode? '': null">Male</label>
+            <div class="checkbox">
+              <label>
+                <b>Is Fresher? :</b>
+                <input type="checkbox" [checked]="associateToAdd.isFresher" (change)="associateToAdd.isFresher = !associateToAdd.isFresher"
+                  [attr.disabled]="isViewMode? '': null">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2 well">
+        <div class="ratio img-responsive img-circle inputWrapper" [ngClass]="{'cursor-restricted': isViewMode}" [ngStyle]="{ 'background-image': 'url(' + associateToAdd.pictureBase64String + ')'}">
+          <input class="fileInput input-hidden" #fileInput type="file" (change)="uploadImage()" [attr.disabled]="isViewMode? '': null"
+            [ngClass]="{'cursor-restricted': isViewMode}" />
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-6 text-right">
+            <label class="labl">
+              <input type="radio" name="radio_status" value="Green" [(ngModel)]="associateToAdd.status" [attr.disabled]="isViewMode? '': null"
+              />
+              <div class="well well-custom" style="background-color: #4CAF50" [ngClass]="{'well-view-mode': isViewMode}">Status</div>
+            </label>
+            <label class="labl">
+              <input type="radio" name="radio_status" value="Blue" [(ngModel)]="associateToAdd.status" [attr.disabled]="isViewMode? '': null"
+              />
+              <div class="well well-custom" style="background-color: #2196F3" [ngClass]="{'well-view-mode': isViewMode}">Status</div>
+            </label>
+            <label class="labl">
+              <input type="radio" name="radio_status" value="Red" [(ngModel)]="associateToAdd.status" [attr.disabled]="isViewMode? '': null"
+              />
+              <div class="well well-custom" style="background-color: #F44336" [ngClass]="{'well-view-mode': isViewMode}">Status</div>
+            </label>
+          </div>
+
+          <div class="col-sm-6 text-left">
+            <label class="labl2">
+              <input type="radio" name="radio_level" value=1 [(ngModel)]="associateToAdd.levelTxt" [attr.disabled]="isViewMode? '': null"
+              />
+              <div class="well well-custom" style="background-color: #d6d6d6" [ngClass]="{'well-view-mode': isViewMode}">Level1</div>
+            </label>
+            <label class="labl2">
+              <input type="radio" name="radio_level" value=2 [(ngModel)]="associateToAdd.levelTxt" [attr.disabled]="isViewMode? '': null"
+              />
+              <div class="well well-custom" style="background-color: #d6d6d6" [ngClass]="{'well-view-mode': isViewMode}">Level2</div>
+            </label>
+            <label class="labl2">
+              <input type="radio" name="radio_level" value=3 [(ngModel)]="associateToAdd.levelTxt" [attr.disabled]="isViewMode? '': null"
+              />
+              <div class="well well-custom" style="background-color: #d6d6d6" [ngClass]="{'well-view-mode': isViewMode}">Level3</div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group text-left">
+          <label class="control-label" for="remark">Remark:</label>
+          <div>
+            <textarea class="form-control" rows="7" [(ngModel)]="associateToAdd.remark" [attr.disabled]="isViewMode? '': null"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-sm-12">
+    <hr/>
+  </div>
+
+  <div class="col-sm-12 text-left m-b-md">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-inline">
+          <div class="form-group m-r-sm">
+            <h4>Skills</h4>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control input-sm" id="skillSearch" placeholder="Search Skill" [(ngModel)]="qs_SkillSearch"
+              [attr.disabled]="isViewMode? '': null">
+          </div>
+          <button type="button" class="btn btn-default btn-sm" title="Reset Filter" (click)="resetSkillSelectionFilter()" [disabled]="isViewMode">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addEditSkillsModal" data-backdrop="static"
+            (click)="skillMasterOpen()" [disabled]="isViewMode">
+            <span class="glyphicon glyphicon-share-alt"></span>
+            Add/Update Skills
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <!-- Skill Sliders -->
+    <!-- <app-skillslider></app-skillslider> -->
+    <div class="row row-eq-height text-left">
+      <div class="col-sm-6 col-right-separator">
+        <h4>Available Skills</h4>
+        <div class="row">
+          <div class="col-sm-6 panel panel-default" *ngFor="let skill of getSkillSubset(false) | colfilter: ['skillSelection', qs_SkillSearch]">
+            {{skill.name}}
+            <br/>
+            <mat-slider color="accent" thumbLabel [(ngModel)]="skill.rating" [min]="0" [max]="20" [disabled]="isViewMode">
+            </mat-slider>
+            {{skill.rating}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <h4>Selected Skills</h4>
+        <div class="row">
+          <div class="col-sm-6 panel panel-default panel-slider-selected" *ngFor="let skill of getSkillSubset(true)">
+            {{skill.name}}
+            <br/>
+            <mat-slider color="accent" thumbLabel [(ngModel)]="skill.rating" [min]="0" [max]="20" [disabled]="isViewMode">
+            </mat-slider>
+            {{skill.rating}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <hr/>
+  </div>
+
+  <div class="col-sm-12">
+    <!-- Footer Input Fields -->
+    <div class="form-inline text-left">
+      <div class="form-group m-r-sm">
+        <label for="otherSkill">Other Skill:</label>
+        <input type="text" class="form-control input-sm" id="otherSkill" [(ngModel)]="associateToAdd.otherSkill" [attr.disabled]="isViewMode? '': null">
+      </div>
+      <div class="form-group m-r-sm">
+        <label for="strength">Strength:</label>
+        <input type="text" class="form-control input-sm" id="strength" [(ngModel)]="associateToAdd.strength" [attr.disabled]="isViewMode? '': null">
+      </div>
+      <div class="form-group">
+        <label for="weakness">Weakness:</label>
+        <input type="text" class="form-control input-sm" id="weakness" [(ngModel)]="associateToAdd.weakness" [attr.disabled]="isViewMode? '': null">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 m-b-lg"></div>
+
+  <div class="col-sm-12">
+    <!-- Form Buttons -->
+    <div class="panel-footer text-right">
+      <button type="button" id="btnSave" class="btn btn-default pull-right m-l-xs" (click)="addNewAssocRecord()" *ngIf="!(isViewMode || isEditMode)">Save</button>
+      <button type="button" id="btnUpdate" class="btn btn-default pull-right m-l-xs" (click)="updateAssocRecord()" *ngIf="isEditMode">Update</button>
+      <button type="button" id="btnCancel" class="btn btn-default pull-right m-l-xs" (click)="cancelClick()">Cancel</button>
+      <button type="button" id="btnDelete" class="btn btn-default pull-right m-l-xs" data-toggle="modal" data-target="#deleteRecordModal"
+        data-backdrop="static" *ngIf="isViewMode || isEditMode">Delete</button>
+      <button type="button" id="btnReset" class="btn btn-default pull-right m-l-xs" (click)="resetClick()" *ngIf="!isViewMode">Reset</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Skill Add/Edit Modal -->
+<div id="addEditSkillsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Skills Tracker: Add/Update Skills</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 text-left">
+
+            <div class="row">
+              <div class="col-sm-6 form-inline">
+
+                <div class="form-group">
+                  <label>Search: </label>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" id="searchSkill" placeholder="Skill Name" [(ngModel)]="qs_SkillSearchMaster"
+                    [attr.disabled]="isSkillEditInProgress? '': null">
+                </div>
+                <button type="button" class="btn btn-default btn-sm" title="Cancel" [disabled]="isSkillEditInProgress" (click)="resetSkillMasterFilter()">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+
+              </div>
+              <div class="col-sm-6 form-inline">
+                <div class="form-group">
+                  <label>Add: </label>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" id="newSkill" placeholder="New Skill Name" [attr.disabled]="isSkillEditInProgress? '': null"
+                    [(ngModel)]="newSkill">
+                </div>
+                <button type="submit" class="btn btn-default btn-sm" title="Add" [disabled]="isSkillEditInProgress" (click)="addNewSkillToMaster()">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm-12 m-b-md"></div>
+
+          <div class="col-sm-12 scrollable-div">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let skill of skillsMaster | colfilter: ['skillMaster', qs_SkillSearchMaster]">
+                <div class="input-group text-left">
+                  <input type="text" class="form-control input-sm" id="editSkill" placeholder="Skill Name" [(ngModel)]="skill.name" [attr.disabled]="skill.isForEdit? null: ''">
+                  <span class="input-group-btn" *ngIf="!skill.isForEdit">
+                    <button type="button" class="btn btn-default btn-sm" title="Edit" [disabled]="skill.actionDisabled" (click)="skillEditEnable(skill)">
+                      <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" title="Delete" [disabled]="skill.actionDisabled" (click)="deleteSkillFromMaster(skill.id)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </span>
+                  <span class="input-group-btn" *ngIf="skill.isForEdit">
+                    <button type="button" class="btn btn-default btn-sm" (click)="updateSkillMaster(skill)" title="Update">
+                      <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" title="Cancel" (click)="skillEditDisable(skill)">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Deletion Confirmation Modal -->
+<div id="deleteRecordModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+
+      <div class="modal-body text-left">
+        Are you sure you want to delete this record ?
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="deleteClick()">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
